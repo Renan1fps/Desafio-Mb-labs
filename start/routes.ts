@@ -20,4 +20,4 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/','EventsController.index')
+Route.resource('/events','EventsController').apiOnly()
