@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Event from 'App/Models/Event'
 
