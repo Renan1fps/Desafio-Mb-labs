@@ -1,5 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Event from 'App/Models/Event'
+import { StoreEventValidator, UpdateEventValidator } from 'App/Validators/Events'
 
 export default class EventsController {
   public async index({}: HttpContextContract) {
@@ -8,7 +9,7 @@ export default class EventsController {
   }
 
   public async store({ request }: HttpContextContract) {
-    const data = request.only(['name', 'description', 'place', 'data'])
+    const data = await request.validate(StoreEventValidator)
     const event = await Event.create(data)
     return event
   }
@@ -20,7 +21,7 @@ export default class EventsController {
 
   public async update({ request, params }: HttpContextContract) {
     const event = await Event.findOrFail(params.id)
-    const data = request.only(['name', 'description', 'place', 'data'])
+    const data = await request.validate(UpdateEventValidator)
     event.merge(data)
     await event.save()
     return event

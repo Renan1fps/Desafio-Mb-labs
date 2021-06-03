@@ -1,5 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Ticket from 'App/Models/Ticket'
+import { StoreTicketValidator, UpdateTicketValidator } from 'App/Validators/Ticket'
 
 export default class TicketsController {
   public async index({}: HttpContextContract) {
@@ -9,7 +10,7 @@ export default class TicketsController {
   }
 
   public async store({ request }: HttpContextContract) {
-    const data = request.only(['name', 'price'])
+    const data = await request.validate(StoreTicketValidator)
     const ticket = await Ticket.create(data)
     return ticket
   }
@@ -21,7 +22,7 @@ export default class TicketsController {
 
   public async update({ request, params }: HttpContextContract) {
     const ticket = await Ticket.findOrFail(params.id)
-    const data = request.only(['name', 'price'])
+    const data = await request.validate(UpdateTicketValidator)
     ticket.merge(data)
     await ticket.save()
     return ticket
