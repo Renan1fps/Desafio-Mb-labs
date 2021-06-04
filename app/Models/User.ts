@@ -9,10 +9,13 @@ export default class User extends BaseModel {
   @column()
   public email: string
 
+  @column()
+  public phoneNumber?: string
+
   @column({ serializeAs: null })
   public password: string
 
-  @column()
+  @column({ serializeAs: null })
   public role: 'admin' | 'normal'
 
   @column()
