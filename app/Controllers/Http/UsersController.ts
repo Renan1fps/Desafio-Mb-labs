@@ -7,11 +7,27 @@ export default class UsersController {
     return users
   }
 
-  public async store({}: HttpContextContract) {}
+  public async store({ request }: HttpContextContract) {
+    const data = request.only(['email', 'phoneNumber', 'password'])
+    const user = await User.create(data)
+    return user
+  }
 
-  public async show({}: HttpContextContract) {}
+  public async show({ params }: HttpContextContract) {
+    const user = await User.findOrFail(params.id)
+    return user
+  }
 
-  public async update({}: HttpContextContract) {}
+  public async update({ request, params }: HttpContextContract) {
+    const user = await User.findOrFail(params.id)
+    const data = request.only(['email', 'role', 'phoneNumber', 'password'])
+    user.merge(data)
+    await user.save()
+    return user
+  }
 
-  public async destroy({}: HttpContextContract) {}
+  public async destroy({params}: HttpContextContract) {
+    const user = await User.findOrFail(params.id)
+    await user.delete()
+  }
 }
