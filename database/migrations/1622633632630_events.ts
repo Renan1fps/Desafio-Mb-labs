@@ -5,7 +5,7 @@ export default class Events extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
+      table.increments('id').primary()
       table.string('name').notNullable().unique()
       table.string('description').notNullable()
       table.string('place').notNullable()

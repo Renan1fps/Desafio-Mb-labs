@@ -1,6 +1,9 @@
+/* eslint-disable prettier/prettier */
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Event from 'App/Models/Event'
 import Ticket from 'App/Models/Ticket'
 import { StoreTicketValidator, UpdateTicketValidator } from 'App/Validators/Ticket'
+import Database from '@ioc:Adonis/Lucid/Database'
 
 export default class TicketsController {
   public async index({}: HttpContextContract) {
@@ -11,7 +14,15 @@ export default class TicketsController {
 
   public async store({ request }: HttpContextContract) {
     const data = await request.validate(StoreTicketValidator)
-    const ticket = await Ticket.create(data)
+    const eventBody = data.eventId
+    const eventFind = await Event.findBy('name', eventBody)
+    console.log(eventFind?.id)
+    const ticket = await Ticket.create({
+      eventId: eventFind?.id,
+      name: data.name,
+      price: data.price,
+    })
+    await ticket.preload('event')
     return ticket
   }
 

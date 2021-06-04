@@ -1,5 +1,7 @@
+/* eslint-disable prettier/prettier */
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+
 
 export default class Event extends BaseModel {
   @column({ isPrimary: true })
