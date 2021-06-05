@@ -3,7 +3,10 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Event from 'App/Models/Event'
 import Ticket from 'App/Models/Ticket'
 import { StoreTicketValidator, UpdateTicketValidator } from 'App/Validators/Ticket'
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7b7e515918ed6829b51f52e24540518727b4da24
 
 export default class TicketsController {
   public async index({}: HttpContextContract) {
@@ -16,14 +19,17 @@ export default class TicketsController {
     const data = await request.validate(StoreTicketValidator)
     const eventBody = data.eventId
     const eventFind = await Event.findBy('name', eventBody)
-    console.log(eventFind?.id)
-    const ticket = await Ticket.create({
-      eventId: eventFind?.id,
-      name: data.name,
-      price: data.price,
-    })
-    await ticket.preload('event')
-    return ticket
+    if (eventFind == undefined) {
+      throw new Error('Event not found')
+    } else {
+      const ticket = await Ticket.create({
+        eventId: eventFind?.id,
+        name: data.name,
+        price: data.price,
+      })
+      await ticket.load('event')
+      return ticket
+    }
   }
 
   public async show({ params }: HttpContextContract) {
@@ -36,6 +42,7 @@ export default class TicketsController {
     const data = await request.validate(UpdateTicketValidator)
     ticket.merge(data)
     await ticket.save()
+    await ticket.preload('event')
     return ticket
   }
 
