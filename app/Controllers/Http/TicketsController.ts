@@ -3,7 +3,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Event from 'App/Models/Event'
 import Ticket from 'App/Models/Ticket'
 import { StoreTicketValidator, UpdateTicketValidator } from 'App/Validators/Ticket'
-import Database from '@ioc:Adonis/Lucid/Database'
+
 
 export default class TicketsController {
   public async index({}: HttpContextContract) {
