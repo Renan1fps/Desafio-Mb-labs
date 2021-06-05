@@ -7,6 +7,7 @@ export  class UpdateTicketValidator {
   public schema = schema.create({
     name: schema.string({ trim: true }),
     price: schema.number(),
+    eventId: schema.number(),
   })
 
   public messages = {}

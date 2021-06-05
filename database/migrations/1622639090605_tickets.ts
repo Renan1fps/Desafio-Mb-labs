@@ -7,7 +7,7 @@ export default class Tickets extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary()
       table.integer('event_id').unsigned().references('events.id').onDelete('CASCADE')
-      table.string('name').notNullable().unique()
+      table.string('name').notNullable()
       table.integer('price').notNullable()
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
