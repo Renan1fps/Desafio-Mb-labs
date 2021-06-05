@@ -10,6 +10,7 @@ export default class UsersSchema extends BaseSchema {
       table.string('password', 180).notNullable()
       table.string('phone_number').notNullable().unique()
       table.string('remember_me_token').nullable()
+      table.integer('ticket_id').unsigned().references('tickets.id')
       table.enum('role', ['normal', 'admin']).nullable().defaultTo('normal')
       table.timestamp('created_at', { useTz: true }).notNullable()
       table.timestamp('updated_at', { useTz: true }).notNullable()
