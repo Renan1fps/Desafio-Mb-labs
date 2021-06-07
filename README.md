@@ -9,6 +9,7 @@
   1. [Build Setup](#build)
   2. [Routes](#routes)
   3. [Requirements analysis](#requirements-analysis)
+  4. [Users](#users)
 
   
  
@@ -74,3 +75,26 @@ Functional Requirements
 # User registration: The user can register in the system, then be able to buy tickets for events.
 # Search for events: Anyone who accesses the system will be able to view the available events and then search for tickets to the event.
 # Permissions: Only administrators can register, delete or update events, tickets, and users.
+```
+## Users
+#### You can test the system with administrator permission using the following credential:
+```bash
+{
+	"email":"mblabs@gmail.com",
+	"password": "mblabs"
+}
+```
+## Attention ⚠️
+### it is recommended to use insomnia to perform the tests
+#### when performing authentication the system returns a token in which you have to put in the header of your requests. How to show below
+```bash
+{
+  "type": "bearer",
+  "token": "Mg.XUXuxIEGNpgXhcjGMtA5Ln78-Q3gQ_a25lJd08YOsLgX6O_rb84w6l_staT1",
+  "expires_at": "2021-06-08T16:19:19.340-03:00"
+}
+```
+### in the header of your request you will put in the n field new header Authorization and in the value you will place the token as follows:
+```bash
+bearer Mg.XUXuxIEGNpgXhcjGMtA5Ln78-Q3gQ_a25lJd08YOsLgX6O_rb84w6l_staT1
+```
