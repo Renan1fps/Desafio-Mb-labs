@@ -98,3 +98,53 @@ Functional Requirements
 ```bash
 bearer Mg.XUXuxIEGNpgXhcjGMtA5Ln78-Q3gQ_a25lJd08YOsLgX6O_rb84w6l_staT1
 ```
+## json of requisitions
+```bash
+#post events
+{
+		"data": "08/06/2021",
+		"description": "descrição de admin",
+    "name": "teste nao autenticado",
+    "place": "campinas" 
+  }
+ #update events
+ {
+    "name": "teste  up admin",
+    "description": "teste de update",
+    "place": "campinas",
+    "data": "08/06/2021"
+  }
+  #post tickets
+  {
+	"name":"teste",
+	"price": 60,
+	"eventId":"teste de admin" -> you need to pass the name of an existing event
+}
+#update tickets
+{
+	"name":"ticket update admin",
+	"price": 37,
+	"eventId": 1 -> you need to pass the right event id
+}
+#post auth
+{
+	"email":"mblabs@gmail.com",
+	"password": "mblabs"
+}
+#post users
+{
+	"email": "mblabs@gmail.com",
+	"password":"mblabs",
+	"phoneNumber":"99999-8888"
+}
+#update users ->
+{
+	"email": "testedeupgmail.com",
+	"password":"password",
+	"phoneNumber":"54321486"
+}
+#post buyticket
+{
+	"name": "teste admin"
+}
+
