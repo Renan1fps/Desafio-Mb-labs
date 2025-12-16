@@ -1,0 +1,31 @@
+{
+  "extends": ["config:recommended"],
+
+  "labels": ["dependencies"],
+  "assignees": ["renan1fps"],
+  "reviewers": ["renan1fps"],
+
+  "dependencyDashboard": true,
+
+  "rangeStrategy": "bump",
+
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["patch", "minor"],
+      "automerge": false
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "groupName": "devDependencies (patch & minor)"
+    }
+  ],
+
+  "schedule": ["at any time"],
+
+  "prConcurrentLimit": 10,
+  "prHourlyLimit": 2
+}
