@@ -6,7 +6,7 @@
   "reviewers": ["renan1fps"],
 
   "dependencyDashboard": true,
-
+  "transitiveRemediation": true,
   "rangeStrategy": "bump",
 
   "packageRules": [
@@ -15,17 +15,18 @@
       "automerge": false
     },
     {
-      "matchUpdateTypes": ["major"],
-      "automerge": false
-    },
-    {
       "matchDepTypes": ["devDependencies"],
       "groupName": "devDependencies (patch & minor)"
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "enabled": true,
+      "automerge": false
     }
   ],
 
   "schedule": ["at any time"],
 
   "prConcurrentLimit": 10,
-  "prHourlyLimit": 2
+  "prHourlyLimit": 10
 }
