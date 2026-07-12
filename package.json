@@ -26,7 +26,7 @@
     "@adonisjs/auth": "^9.5.1",
     "@adonisjs/core": "^6.19.2",
     "@adonisjs/lucid": "^21.8.1",
-    "@adonisjs/repl": "^4.1.2",
+    "@adonisjs/repl": "^5.0.0",
     "luxon": "^1.28.1",
     "mysql": "^2.18.1",
     "phc-argon2": "^1.1.4",
